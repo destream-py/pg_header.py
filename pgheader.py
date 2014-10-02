@@ -63,10 +63,10 @@ class ArchiveHandle(object):
         self.FH = fh
 
     def ReadBufPtr(self, buf, size):
-        local_buf = ctypes.create_string_buffer(size)
-        bytes_read = self.FH.readinto(local_buf)
         if size > len(buf):
             raise IOError("buffer not big enough")
+        local_buf = ctypes.create_string_buffer(size)
+        bytes_read = self.FH.readinto(local_buf)
         buf[:size] = local_buf
         return bytes_read
 
